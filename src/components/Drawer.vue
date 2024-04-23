@@ -11,7 +11,7 @@ const props = defineProps({
   vatPrice: Number
 })
 
-const { cart } = inject('cart')
+const { cart, closeDrawer } = inject('cart')
 
 const isCreating = ref(false)
 const orderId = ref(null)
@@ -40,7 +40,7 @@ const createOrder = async () => {
 </script>
 
 <template>
-  <div class="fixed z-10 top-0 left-0 h-full w-full bg-black opacity-70"></div>
+  <div @click="closeDrawer" class="fixed z-10 top-0 left-0 h-full w-full bg-black opacity-70"></div>
   <div class="bg-white w-96 h-full fixed right-0 top-0 z-20 p-8">
     <DrawerHead />
 

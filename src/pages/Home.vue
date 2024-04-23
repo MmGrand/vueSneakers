@@ -120,7 +120,11 @@ watch(filters, fetchItems)
     <h2 class="text-3xl font-bold mb-8">Все кроссовки</h2>
 
     <div class="flex gap-4">
-      <select @change="onChangeSelect" class="py-2 px-3 border rounded-md outline-none" name="sort">
+      <select
+        @change="onChangeSelect"
+        class="py-2 px-3 border rounded-md outline-none bg-white"
+        name="sort"
+      >
         <option value="title">По название</option>
         <option value="price">По цене (дешевые)</option>
         <option value="-price">По цене (дорогие)</option>
