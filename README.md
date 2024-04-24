@@ -1,14 +1,15 @@
-# vue-sneakers
+# Проект "vueSneakers"
 
-This template should help get you started developing with Vue 3 in Vite.
+Магазин кроссовок, сделанный на vue js + tailwind по [видео](https://www.youtube.com/watch?v=U_-Ht_v-oAs&t=6182s) и доработанный в некоторых моментах мной.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Используемые технологии
+<div> 
+<ul>
+<li>Vue js</li>
+<li>Tailwind</li>
+<li><a href="https://mokky.dev/">MOKKY.DEV</a></li>
+</ul>
+</div> 
 
 ## Project Setup
 
