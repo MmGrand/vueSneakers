@@ -115,7 +115,7 @@ watch(filters, fetchItems)
 </script>
 
 <template>
-  <div v-if="items.length !== 0">
+  <div>
     <div class="flex justify-between items-center">
       <h2 class="text-3xl font-bold mb-8">Все кроссовки</h2>
 
@@ -142,15 +142,15 @@ watch(filters, fetchItems)
       </div>
     </div>
 
-    <div class="mt-10">
+    <div class="mt-10" v-if="items.length !== 0">
       <CardList :items="items" @add-to-favorite="addToFavorite" @add-to-cart="onClickAddPlus" />
     </div>
-  </div>
-  <div class="mt-60" v-else>
-    <infoBlock
-      title="Товаров нет :("
-      description="К сожалению, в магазине сейчас нет товаров. Приходите позже."
-      image-url="/emoji-2.png"
-    />
+    <div class="mt-60" v-else>
+      <infoBlock
+        title="Товаров нет :("
+        description="К сожалению, в магазине сейчас нет товаров по вашему запросу."
+        image-url="/emoji-2.png"
+      />
+    </div>
   </div>
 </template>
