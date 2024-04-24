@@ -4,10 +4,12 @@ import { ref, onMounted, inject, watch } from 'vue'
 
 import CardList from '../components/CardList.vue'
 import infoBlock from '../components/infoBlock.vue'
+import LoadingSpinner from '../components/LoadingSpinner.vue'
 
 const { cart, addToCart, removeFromCart } = inject('cart')
 
 const favorites = ref([])
+const isLoading = ref(true)
 
 const onClickAddPlus = (item) => {
   if (!item.isAdded) {
@@ -51,6 +53,8 @@ onMounted(async () => {
     ...item,
     isAdded: cart.value.some((cartItem) => cartItem.id === item.id)
   }))
+
+  isLoading.value = false
 })
 
 watch(cart, () => {
@@ -62,22 +66,25 @@ watch(cart, () => {
 </script>
 
 <template>
-  <div v-if="favorites.length !== 0">
-    <h2 class="text-3xl font-bold mb-8">Мои закладки:</h2>
+  <LoadingSpinner v-if="isLoading" />
+  <div v-else>
+    <div v-if="favorites.length !== 0">
+      <h2 class="text-3xl font-bold mb-8">Мои закладки:</h2>
 
-    <div class="mt-10">
-      <CardList
-        :items="favorites"
-        @add-to-favorite="deleteToFavorite"
-        @add-to-cart="onClickAddPlus"
+      <div class="mt-10">
+        <CardList
+          :items="favorites"
+          @add-to-favorite="deleteToFavorite"
+          @add-to-cart="onClickAddPlus"
+        />
+      </div>
+    </div>
+    <div class="mt-60" v-else>
+      <infoBlock
+        title="Закладок нет :("
+        description="Вы ничего не добавляли в закладки"
+        image-url="/emoji-1.png"
       />
     </div>
-  </div>
-  <div class="mt-60" v-else>
-    <infoBlock
-      title="Закладок нет :("
-      description="Вы ничего не добавляли в закладки"
-      image-url="/emoji-1.png"
-    />
   </div>
 </template>

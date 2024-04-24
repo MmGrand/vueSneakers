@@ -5,10 +5,12 @@ import { inject, reactive, watch, ref, onMounted } from 'vue'
 
 import CardList from '../components/CardList.vue'
 import infoBlock from '../components/infoBlock.vue'
+import LoadingSpinner from '../components/LoadingSpinner.vue'
 
 const { cart, addToCart, removeFromCart } = inject('cart')
 
 const items = ref([])
+const isLoading = ref(true)
 
 const filters = reactive({
   sortBy: 'title',
@@ -103,6 +105,7 @@ onMounted(async () => {
     ...item,
     isAdded: cart.value.some((cartItem) => cartItem.id === item.id)
   }))
+  isLoading.value = false
 })
 watch(cart, () => {
   items.value = items.value.map((item) => ({
@@ -115,7 +118,8 @@ watch(filters, fetchItems)
 </script>
 
 <template>
-  <div>
+  <LoadingSpinner v-if="isLoading" />
+  <div v-else>
     <div class="flex justify-between items-center">
       <h2 class="text-3xl font-bold mb-8">Все кроссовки</h2>
 
